@@ -1,2 +1,5 @@
 title: Press Kit
 description: A press kit kit!
+collections:
+  games:
+    output: true
