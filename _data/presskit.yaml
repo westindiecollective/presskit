@@ -77,10 +77,10 @@ credits:
 
 contacts: 
   - name: Inquiries
-    mail: "rami@vlambeer.com"
+    address: "rami@vlambeer.com"
   - name: Twitter
-    link: "http://twitter.com/MyCompanyName"
+    address: "http://twitter.com/MyCompanyName"
   - name: Facebook
-    link: "http://facebook.com/MyCompanyName"
+    address: "http://facebook.com/MyCompanyName"
   - name: Web
-    link: "MyCompanyWebsite.com"
+    address: "MyCompanyWebsite.com"
