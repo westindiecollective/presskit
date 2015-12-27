@@ -10,7 +10,7 @@ address:
   - "Address Line 3"
 
 social: 
-  twitter: "@MyTwitter"
+  twitter: "MyTwitter"
   facebook: "facebook.com/MyCompanyName"
   skype: "callto:MySkypeName"
 
