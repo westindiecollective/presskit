@@ -1,3 +1,6 @@
+---
+layout: game
+
 title: "Game Name"
 release: "1 May, 2012"
 website: "http://www.gamesite.com/"
@@ -89,3 +92,4 @@ credits:
   - person: "Jane Doette"
     website: "www.olivertwist.com"
     role: "Music, Freelancer"
+---
