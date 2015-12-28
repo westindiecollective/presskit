@@ -1,3 +1,10 @@
+{% assign base_url = '' %}
+{% assign depth = page.url | split: '/' | size | minus: 1 %}
+{% if    depth == 1 %}{% assign base_url = '.' %}
+{% elsif depth == 2 %}{% assign base_url = '..' %}
+{% elsif depth == 3 %}{% assign base_url = '../..' %}
+{% elsif depth == 4 %}{% assign base_url = '../../..' %}{% endif %}
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +13,7 @@
 
 		<title>{{site.data.presskit.title}}</title>
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/uikit/1.2.0/css/uikit.gradient.min.css" rel="stylesheet" type="text/css">
-		<link href="{{site.url}}/style.css" rel="stylesheet">
+		<link href="{{base_url}}/style.css" rel="stylesheet">
 	</head>
 
   <body>
