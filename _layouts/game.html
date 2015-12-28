@@ -18,8 +18,8 @@ layout: default
 				<li><a href="#trailers">Videos</a></li>
 				<li><a href="#images">Images</a></li>
 				<li><a href="#logo">Logo &amp; Icon</a></li>
-        {% if game.awards.length > 0 %} <li><a href="#awards">Awards &amp; Recognition</a></li> {% endif %}
-        {% if game.quotes.length > 0 %} <li><a href="#quotes">Selected Articles</a></li> {% endif %}
+        {% if game.awards != empty %} <li><a href="#awards">Awards &amp; Recognition</a></li> {% endif %}
+        {% if game.quotes != empty %} <li><a href="#quotes">Selected Articles</a></li> {% endif %}
         {% if game['press-can-request-copy'] %} <li><a href="#preview">Request Press Copy</a></li> {% endif %}
         {% if !game['monetization-permission'] %} <li><a href="#monetize">Monetization Permission</a></li> {% endif %}
         <li><a href="#links">Additional Links</a></li>
@@ -55,7 +55,7 @@ layout: default
 							</p>
 							<p>
 								<strong>Regular Price:</strong><br/>
-                {% if game.prices.length > 0 %}
+                {% if game.prices != empty %}
                   <table>
                   {% for price in game.prices %}
                     <tr>
@@ -136,7 +136,7 @@ layout: default
 
           <hr>
 
-          {% if game.awards.length > 0 %}
+          {% if game.awards != empty %}
             <h2 id="awards">Awards &amp; Recognition</h2>
             <ul>
               <!-- promoter awards here -->
@@ -150,7 +150,7 @@ layout: default
           	<hr>
           {% endif %}
 
-          {% if game.quotes.length > 0 %}
+          {% if game.quotes != empty %}
             <h2 id="awards">Awards &amp; Recognition</h2>
             <h2>Selected Articles</h2>
             <ul>
