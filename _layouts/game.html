@@ -233,15 +233,10 @@ layout: default
 							<h2 id="contact">Contact</h2>
 
               {% for contact in company.contacts %}
-
                 <p>
-                {% if contact.mail.length > 0 %}
-                  <strong>{{contact.name}}</strong><br/><a href="mailto:{{contact.mail}}">{{contact.mail}}</a>
-                {% else if contact.link.length > 0 %}
-                  <strong>{{contact.name}}</strong><br/><a href="http://{{contact.link}}">{{contact.link}}</a>
-                {% endif %}
+                  <strong>{{contact.name}}</strong><br/>
+                  <a href="{{contact.address}}">{{contact.address}}</a>
                 </p>
-
               {% endfor %}
 
             </div>
