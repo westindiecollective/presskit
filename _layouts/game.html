@@ -6,55 +6,55 @@ layout: default
 {% assign game = page %}
 
 <div class="uk-container uk-container-center">
-	<div class="uk-grid">
-		<div id="navigation" class="uk-width-medium-1-4">
-			<h1 class="nav-header">{{company.title}}</h1>
-			<a class="nav-header" href="{{base_url}}" target="_self">press kit</a></strong>
-			<ul class="uk-nav uk-nav-side">
+  <div class="uk-grid">
+    <div id="navigation" class="uk-width-medium-1-4">
+      <h1 class="nav-header">{{company.title}}</h1>
+      <a class="nav-header" href="{{base_url}}" target="_self">press kit</a></strong>
+      <ul class="uk-nav uk-nav-side">
         <li><a href="#factsheet">Factsheet</a></li>
-				<li><a href="#description">Description</a></li>
-				<li><a href="#history">History</a></li>
-				<li><a href="#projects">Projects</a></li>
-				<li><a href="#trailers">Videos</a></li>
-				<li><a href="#images">Images</a></li>
-				<li><a href="#logo">Logo &amp; Icon</a></li>
+        <li><a href="#description">Description</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#trailers">Videos</a></li>
+        <li><a href="#images">Images</a></li>
+        <li><a href="#logo">Logo &amp; Icon</a></li>
         {% if game.awards != empty %} <li><a href="#awards">Awards &amp; Recognition</a></li> {% endif %}
         {% if game.quotes != empty %} <li><a href="#quotes">Selected Articles</a></li> {% endif %}
         {% if game['press-can-request-copy'] %} <li><a href="#preview">Request Press Copy</a></li> {% endif %}
         {% if !game['monetization-permission'] %} <li><a href="#monetize">Monetization Permission</a></li> {% endif %}
         <li><a href="#links">Additional Links</a></li>
-				<li><a href="#about">About {{company.title}}</a></li>
-				<li><a href="#credits">Team</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-		</div>
+        <li><a href="#about">About {{company.title}}</a></li>
+        <li><a href="#credits">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
 
-		<div id="content" class="uk-width-medium-3-4">
+    <div id="content" class="uk-width-medium-3-4">
       <img src="{{ site.url }}/images/header.png" class="header">
       <div class="uk-grid">
-						<div class="uk-width-medium-2-6">
-							<h2 id="factsheet">Factsheet</h2>
-							<p>
-								<strong>Developer:</strong><br/>
-								<a href="{{base_url}}">{{company.title}}</a><br/>
-								Based in {{company.city}}
-							</p>
-							<p>
-								<strong>Release date:</strong><br/>
-								{{game.release}}
-							</p>
-							<p>
-								<strong>Platforms:</strong><br/>
+            <div class="uk-width-medium-2-6">
+              <h2 id="factsheet">Factsheet</h2>
+              <p>
+                <strong>Developer:</strong><br/>
+                <a href="{{base_url}}">{{company.title}}</a><br/>
+                Based in {{company.city}}
+              </p>
+              <p>
+                <strong>Release date:</strong><br/>
+                {{game.release}}
+              </p>
+              <p>
+                <strong>Platforms:</strong><br/>
                 {% for platform in game.platforms %}
                   <a href="http://{{platform.link}}">{{platform.name}}</a><br/>
                 {% endfor %}
               </p>
-							<p>
-								<strong>Website:</strong><br/>
-								<a href="http://{{game.website}}">{{game.website}}</a>
-							</p>
-							<p>
-								<strong>Regular Price:</strong><br/>
+              <p>
+                <strong>Website:</strong><br/>
+                <a href="http://{{game.website}}">{{game.website}}</a>
+              </p>
+              <p>
+                <strong>Regular Price:</strong><br/>
                 {% if game.prices != empty %}
                   <table>
                   {% for price in game.prices %}
@@ -68,26 +68,26 @@ layout: default
                   -
                 {% endif %}
               </p>
-						</div>
-						<div class="uk-width-medium-4-6">
-							<h2 id="description">Description</h2>
-							<p>{{game.description}}</p>
+            </div>
+            <div class="uk-width-medium-4-6">
+              <h2 id="description">Description</h2>
+              <p>{{game.description}}</p>
               {% if game.history %}
                 <h2 id="history">History</h2>
                 <p>{{game.history}}</p>
               {% endif %}
               <h2>Features</h2>
-							<ul>
+              <ul>
               {% for feature in game.features %}
                 <li>{{feature}}</li>
               {% endfor %}
               </ul>
-						</div>
-					</div>
+            </div>
+          </div>
 
-					<hr>
+          <hr>
 
-					<h2 id="trailers">Videos</h2>
+          <h2 id="trailers">Videos</h2>
           {% for trailer in game.trailers %}
             <p>
               <strong>{{trailer.name}}</strong>&nbsp;
@@ -116,7 +116,7 @@ layout: default
 
           <hr>
 
-					<h2 id="images">Images</h2>
+          <h2 id="images">Images</h2>
           <a href="{{base_url}}/images/images.zip"><div class="uk-alert">Download all screenshots &amp; photos as .zip.</div></a>
 
           <div class="uk-grid images">
@@ -126,7 +126,7 @@ layout: default
 
           <hr>
 
-					<h2 id="logo">Logo &amp; Icon</h2>
+          <h2 id="logo">Logo &amp; Icon</h2>
           <a href="{{base_url}}/images/logo.zip"><div class="uk-alert">Download logo files as .zip.</div></a>
           <div class="uk-grid images">
             <div class="uk-width-medium-1-2"><a href="{{base_url}}/images/logo.png"><img src="{{base_url}}/images/logo.png" alt="logo" /></a></div>
@@ -145,9 +145,9 @@ layout: default
                 <li>"{{award.description}}" <cite>{{award.info}}</cite></li>
               {% endfor %}
 
-          	</ul>
+            </ul>
 
-          	<hr>
+            <hr>
           {% endif %}
 
           {% if game.quotes != empty %}
@@ -159,13 +159,13 @@ layout: default
               {% for quote in game.quotes %}
                 <li>
                   "{{quote.description}}" <br/>
-          	      <cite>- {{quote.name}}, <a href="http://{{quote.link}}">{{quote.website}}</a></cite>
+                  <cite>- {{quote.name}}, <a href="http://{{quote.link}}">{{quote.website}}</a></cite>
                 </li>
               {% endfor %}
 
-          	</ul>
+            </ul>
 
-          	<hr>
+            <hr>
           {% endif %}
 
           <!-- press-can-request-copy with distribute() here -->
@@ -194,29 +194,29 @@ layout: default
 
           {% for additional in game.additionals %}
           <p>
-          	<strong>{{additional.title}}</strong><br/>
-          	{{additional.description}} <a href="http://{{additional.link}}" alt="{{additional.link}}">{{additional.link}}</a>.
+            <strong>{{additional.title}}</strong><br/>
+            {{additional.description}} <a href="http://{{additional.link}}" alt="{{additional.link}}">{{additional.link}}</a>.
           </p>
           {% endfor %}
 
           <hr>
 
-					<h2 id="about">About {{company.title}}</h2>
-					<p>
-						<strong>Boilerplate</strong><br/>
-						{{company.description}}
-					</p>
+          <h2 id="about">About {{company.title}}</h2>
+          <p>
+            <strong>Boilerplate</strong><br/>
+            {{company.description}}
+          </p>
 
-					<p>
-						<strong>More information</strong><br/>
-						More information on {{company.title}}, our logo &amp; relevant media are available <a href="{{base_url}}">here</a>
-					</p>
+          <p>
+            <strong>More information</strong><br/>
+            More information on {{company.title}}, our logo &amp; relevant media are available <a href="{{base_url}}">here</a>
+          </p>
 
-					<hr>
+          <hr>
 
-					<div class="uk-grid">
-						<div class="uk-width-medium-1-2">
-							<h2 id="credits">{{game.title}} Credits</h2>
+          <div class="uk-grid">
+            <div class="uk-width-medium-1-2">
+              <h2 id="credits">{{game.title}} Credits</h2>
 
               {% for credit in game.credits %}
                 <p>
@@ -229,8 +229,8 @@ layout: default
                 </p>
               {% endfor %}
             </div>
-						<div class="uk-width-medium-1-2">
-							<h2 id="contact">Contact</h2>
+            <div class="uk-width-medium-1-2">
+              <h2 id="contact">Contact</h2>
 
               {% for contact in company.contacts %}
                 <p>
@@ -240,11 +240,11 @@ layout: default
               {% endfor %}
 
             </div>
-					</div>
+          </div>
 
-					<hr>
+          <hr>
 
-					<p><a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="#">these fine folks</a></p>
-				</div>
-			</div>
-		</div>
+          <p><a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="#">these fine folks</a></p>
+        </div>
+      </div>
+    </div>
