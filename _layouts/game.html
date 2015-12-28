@@ -2,8 +2,6 @@
 layout: default
 ---
 
-<p>{{page.title}}'s sheet</p>
-
 {% assign company = site.data.presskit %}
 {% assign game = page %}
 
@@ -12,7 +10,7 @@ layout: default
 		<div id="navigation" class="uk-width-medium-1-4">
 			<h1 class="nav-header">{{company.title}}</h1>
 			<a class="nav-header" href="{{site.url}}" target="_self">press kit</a></strong>
-			<ul class="uk-nav uk-nav-side">';
+			<ul class="uk-nav uk-nav-side">
         <li><a href="#factsheet">Factsheet</a></li>
 				<li><a href="#description">Description</a></li>
 				<li><a href="#history">History</a></li>
@@ -39,11 +37,11 @@ layout: default
 							<p>
 								<strong>Developer:</strong><br/>
 								<a href="{{site.url}}">{{company.title}}</a><br/>
-								Based in {{company['based-in']}}
+								Based in {{company.city}}
 							</p>
 							<p>
 								<strong>Release date:</strong><br/>
-								{{game['release-date']}}
+								{{game.release}}
 							</p>
 							<p>
 								<strong>Platforms:</strong><br/>
@@ -74,14 +72,10 @@ layout: default
 						<div class="uk-width-medium-4-6">
 							<h2 id="description">Description</h2>
 							<p>{{game.description}}</p>
-							<h2 id="history">History</h2>
-              {% for history in game.histories %}
-                <strong>{{history.header}}</strong>
-                <p>{{history.text}}</p>
-              {% endfor %}
-
-              {% if game.history %} <p>{{game.history}}</p> {% endif %}}
-
+              {% if game.history %}
+                <h2 id="history">History</h2>
+                <p>{{game.history}}</p>
+              {% endif %}
               <h2>Features</h2>
 							<ul>
               {% for feature in game.features %}
@@ -132,11 +126,11 @@ layout: default
 
           <hr>
 
-					<h2 id="logo">Logo &amp; Icon</h2>;
+					<h2 id="logo">Logo &amp; Icon</h2>
           <a href="{{site.url}}/images/logo.zip"><div class="uk-alert">Download logo files as .zip.</div></a>
           <div class="uk-grid images">
             <div class="uk-width-medium-1-2"><a href="{{site.url}}/images/logo.png"><img src="{{site.url}}/images/logo.png" alt="logo" /></a></div>
-            <div class="uk-width-medium-1-2"><a href="{{site.url}}/images/icon.png"><img src="{{site.url}}/images/icon.png" alt="logo" /></a></div>
+            <div class="uk-width-medium-1-2"><a href="{{site.url}}/images/icon.png"><img src="{{site.url}}/images/icon.png" alt="icon" /></a></div>
           </div>
           <!-- <p>There are currently no logos or icons available for {{game.title}}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p> -->
 
@@ -238,7 +232,7 @@ layout: default
 						<div class="uk-width-medium-1-2">
 							<h2 id="contact">Contact</h2>
 
-              {% for contact in game.contacts %}
+              {% for contact in company.contacts %}
 
                 <p>
                 {% if contact.mail.length > 0 %}
