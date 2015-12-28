@@ -91,7 +91,7 @@ layout: default
       <h2 id="trailers">Videos</h2>
       {% for trailer in presskit.trailers %}
         <p>
-          <strong>{{trailer.name}}</strong>&nbsp;<a href="http://www.youtube.com/watch?v={{trailer.youtube}}">YouTube</a>
+          <strong>{{trailer.name}}</strong>:&nbsp;<a href="https://youtu.be/{{trailer.youtube}}">https://youtu.be/{{trailer.youtube}}</a>
           <div class="uk-responsive-width iframe-container">
             <iframe src="http://www.youtube.com/embed/{{trailer.youtube}}" frameborder="0" allowfullscreen></iframe>
           </div>
