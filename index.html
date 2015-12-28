@@ -1,218 +1,192 @@
 ---
+layout: default
 ---
 
 {% assign presskit = site.data.presskit %}
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<title>{{presskit.title}}</title>
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/uikit/1.2.0/css/uikit.gradient.min.css" rel="stylesheet" type="text/css">
-		<link href="style.css" rel="stylesheet">
-	</head>
-
-	<body>
-		<div class="uk-container uk-container-center">
+<div class="uk-container uk-container-center">
+	<div class="uk-grid">
+		<div id="navigation" class="uk-width-medium-1-4">
+			<h1 class="nav-header">{{presskit.title}}</h1>
+			<a class="nav-header" href="http://{{presskit.website}}">{{presskit.website}}</a>
+			<ul class="uk-nav uk-nav-side">
+			  <li><a href="#factsheet">Factsheet</a></li>
+				<li><a href="#description">Description</a></li>
+				<li><a href="#history">History</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#trailers">Videos</a></li>
+				<li><a href="#images">Images</a></li>
+				<li><a href="#logo">Logo &amp; Icon</a></li>
+				<li><a href="#awards">Awards &amp; Recognition</a></li>
+				<li><a href="#quotes">Selected Articles</a></li>
+				<li><a href="#links">Additional Links</a></li>
+				<li><a href="#credits">Team</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</div>
+		<div id="content" class="uk-width-medium-3-4"><img src="images/header.png" class="header">
 			<div class="uk-grid">
-				<div id="navigation" class="uk-width-medium-1-4">
-					<h1 class="nav-header">{{presskit.title}}</h1>
-					<a class="nav-header" href="http://{{presskit.website}}">{{presskit.website}}</a>
-					<ul class="uk-nav uk-nav-side">
-					  <li><a href="#factsheet">Factsheet</a></li>
-						<li><a href="#description">Description</a></li>
-						<li><a href="#history">History</a></li>
-						<li><a href="#projects">Projects</a></li>
-						<li><a href="#trailers">Videos</a></li>
-						<li><a href="#images">Images</a></li>
-						<li><a href="#logo">Logo &amp; Icon</a></li>
-						<li><a href="#awards">Awards &amp; Recognition</a></li>
-						<li><a href="#quotes">Selected Articles</a></li>
-						<li><a href="#links">Additional Links</a></li>
-						<li><a href="#credits">Team</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-				</div>
-				<div id="content" class="uk-width-medium-3-4"><img src="images/header.png" class="header">					<div class="uk-grid">
-						<div class="uk-width-medium-2-6">
-							<h2 id="factsheet">Factsheet</h2>
-							<p>
-								<strong>Developer:</strong><br/>
-								<a href="">{{presskit.title}}</a><br/>
-								Based in {{presskit.city}}
-							</p>
-							<p>
-								<strong>Founding date:</strong><br/>
-								{{presskit.founded}}
-							</p>
-							<p>
-								<strong>Website:</strong><br/>
-								<a href="http://{{presskit.website}}">{{presskit.website}}</a>
-							</p>
-							<p>
-								<strong>Press / Business contact:</strong><br/>
-								<a href="mailto:{{presskit.press}}">{{presskit.press}}</a>
-							</p>        
-							<p>
-								<strong>Social:</strong><br/>
-								<a href="http://twitter.com/{{presskit.social.twitter}}">twitter.com/{{presskit.social.twitter}}</a><br/>
-								<a href="http://facebook.com/{{presskit.social.facebook}}">facebook.com/{{presskit.social.facebook}}</a><br/>
-								<a href="http://callto:{{presskit.social.skype}}">Skype</a><br/>
-							</p>
-							<p>
-							  <strong>Releases:</strong><br/>
-							  <!-- <a href="release_url">release_name</a><br/> -->
-							</p>
-							  <p><strong>Address:</strong><br/>
-							  {% for address_line in presskit.address %}
-							    {{address_line}}<br/>
-							  {% endfor %}
-							</p> 
-							<p>
-								<strong>Phone:</strong><br/>
-								{{presskit.phone}}
-							</p>
-						</div>
-						<div class="uk-width-medium-4-6">
-							<h2 id="description">Description</h2>
-							<p>{{presskit.description}}</p>
-
-							<h2 id="history">History</h2>
-							{% for story in presskit.history %}
-  							<strong>{{story.header}}</strong>
-                <p>{{story.header}}</p>
-              {% endfor %}
-
-              <h2 id="projects">Projects</h2>
-							<ul>
-							  <!-- <li><a href="project_url">project_name</a></li> -->
-							</ul>
-						</div>
-					</div>
-
-					<hr>
-
-					<h2 id="trailers">Videos</h2>
-					{% for trailer in presskit.trailers %}
-  				  <p>
-  				    <strong>{{trailer.name}}</strong>&nbsp;<a href="http://www.youtube.com/watch?v={{trailer.youtube}}">YouTube</a>
-  				    <div class="uk-responsive-width iframe-container">
-  	            <iframe src="http://www.youtube.com/embed/{{trailer.youtube}}" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </p>
-          {% endfor %}
-
-          <hr>
-
-					<h2 id="images">Images</h2>
-					<a href="images/images.zip">
-            <div class="uk-alert">download all screenshots &amp; photos as .zip</div>
-					</a>
-					<div class="uk-grid images">
-					  <!-- Iterate over images
-					  <div class="uk-width-medium-1-2">
-					    <a href="images/janwillem-vlambeer-2.png">
-					      <img src="images/janwillem-vlambeer-2.png" alt="janwillem-vlambeer-2.png" />
-					    </a>
-  					</div> -->
-					</div>
-					<p class="images-text">There are far more images available for Vlambeer, but these are the ones we felt would be most useful to you. If you have specific requests, please do <a href="#contact">contact us</a>!</p>
-
-					<hr>
-
-					<h2 id="logo">Logo &amp; Icon</h2>
-					<a href="images/logo.zip">
-					  <div class="uk-alert">download logo files as .zip (15KB)</div>
-					</a>
-					<div class="uk-grid images">
-					  <div class="uk-width-medium-1-2">
-					    <a href="images/logo.png">
-					      <img src="images/logo.png" alt="logo" />
-					    </a>
-					  </div>
-					</div>
-					
-					<hr>
-					
-					<h2 id="awards">Awards &amp; Recognition</h2>
-					<ul>
-					  {% for award in presskit.awards %}
-					    <li>"{{award.description}}" - <cite>{{award.info}}</cite></li>
-					  {% endfor %}
-					</ul>
-					  
-				  <hr>
-					  
-					<h2 id="quotes">Selected Articles</h2>
-					<ul>
-					  {% for quote in presskit.quotes %}
-  					  <li>"{{quote.description}} - Everything else we consider nonsense"<br/>
-  					    <cite>- {{quote.name}}, <a href="{{quote.link}}">{{quote.website}}</a></cite>
-  					  </li>
-					  {% endfor %}
-					</ul>
-					
-					<hr>
-					
-					<h2 id="links">Additional Links</h2>
-				  {% for additional in presskit.additionals %}
-  					<p>
-  		        <strong>{{additional.title}}</strong><br/>
-  		        {{additional.description}} available <a href="{{additional.link}}" alt="{{additional.link}}">here</a>.
-  	        </p>
-				  {% endfor %}
-
-	        <hr>
-
-	        <div class="uk-grid">
-					  <div class="uk-width-medium-1-2">
-  					  <h2 id="credits">Team &amp; Repeating Collaborator</h2>
-  					  {% for credit in presskit.credits %}
-    					  <p>
-    					    <strong>{{credit.person}}</strong><br/>
-    					    <a href="http://{{credit.website}}">{{credit.role}}</a>
-    					  </p>
-    				  {% endfor %}
-  				  </div>
-
-  					<div class="uk-width-medium-1-2">
-  						<h2 id="contact">Contacts</h2>
-  					  {% for contact in presskit.contacts %}
-    						<p>
-    						  <strong>{{contact.name}}</strong><br/>
-    						  <a href="{{contact.address}}">{{contact.address}}</a>
-    						</p>
-    				  {% endfor %}
-						</div>
-					</div>
-
-					<hr>
-
+				<div class="uk-width-medium-2-6">
+					<h2 id="factsheet">Factsheet</h2>
 					<p>
-					  <a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="sheet.php?p=credits">these fine folks</a>
+						<strong>Developer:</strong><br/>
+						<a href="">{{presskit.title}}</a><br/>
+						Based in {{presskit.city}}
+					</p>
+					<p>
+						<strong>Founding date:</strong><br/>
+						{{presskit.founded}}
+					</p>
+					<p>
+						<strong>Website:</strong><br/>
+						<a href="http://{{presskit.website}}">{{presskit.website}}</a>
+					</p>
+					<p>
+						<strong>Press / Business contact:</strong><br/>
+						<a href="mailto:{{presskit.press}}">{{presskit.press}}</a>
+					</p>
+					<p>
+						<strong>Social:</strong><br/>
+						<a href="http://twitter.com/{{presskit.social.twitter}}">twitter.com/{{presskit.social.twitter}}</a><br/>
+						<a href="http://facebook.com/{{presskit.social.facebook}}">facebook.com/{{presskit.social.facebook}}</a><br/>
+						<a href="http://callto:{{presskit.social.skype}}">Skype</a><br/>
+					</p>
+					<p>
+					  <strong>Releases:</strong><br/>
+					  <!-- <a href="release_url">release_name</a><br/> -->
+					</p>
+					  <p><strong>Address:</strong><br/>
+					  {% for address_line in presskit.address %}
+					    {{address_line}}<br/>
+					  {% endfor %}
+					</p>
+					<p>
+						<strong>Phone:</strong><br/>
+						{{presskit.phone}}
 					</p>
 				</div>
+				<div class="uk-width-medium-4-6">
+					<h2 id="description">Description</h2>
+					<p>{{presskit.description}}</p>
+
+					<h2 id="history">History</h2>
+					{% for story in presskit.history %}
+						<strong>{{story.header}}</strong>
+            <p>{{story.header}}</p>
+          {% endfor %}
+
+          <h2 id="projects">Projects</h2>
+					<ul>
+					{% for game in site.games %}
+  					<li><a href="{{base_url}}{{game.url | remove_first:'/'}}">{{game.title}}</a></li>
+					{% else %}
+						<li>No pain no game</li>
+					{% endfor %}
+					</ul>
+				</div>
 			</div>
+
+			<hr>
+
+			<h2 id="trailers">Videos</h2>
+			{% for trailer in presskit.trailers %}
+			  <p>
+			    <strong>{{trailer.name}}</strong>&nbsp;<a href="http://www.youtube.com/watch?v={{trailer.youtube}}">YouTube</a>
+			    <div class="uk-responsive-width iframe-container">
+            <iframe src="http://www.youtube.com/embed/{{trailer.youtube}}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </p>
+      {% endfor %}
+
+      <hr>
+
+			<h2 id="images">Images</h2>
+			<a href="images/images.zip">
+        <div class="uk-alert">download all screenshots &amp; photos as .zip</div>
+			</a>
+			<div class="uk-grid images">
+			  <!-- Iterate over images
+			  <div class="uk-width-medium-1-2">
+			    <a href="images/janwillem-vlambeer-2.png">
+			      <img src="images/janwillem-vlambeer-2.png" alt="janwillem-vlambeer-2.png" />
+			    </a>
+				</div> -->
+			</div>
+			<p class="images-text">There are far more images available for Vlambeer, but these are the ones we felt would be most useful to you. If you have specific requests, please do <a href="#contact">contact us</a>!</p>
+
+			<hr>
+
+			<h2 id="logo">Logo &amp; Icon</h2>
+			<a href="images/logo.zip">
+			  <div class="uk-alert">download logo files as .zip (15KB)</div>
+			</a>
+			<div class="uk-grid images">
+			  <div class="uk-width-medium-1-2">
+			    <a href="images/logo.png">
+			      <img src="images/logo.png" alt="logo" />
+			    </a>
+			  </div>
+			</div>
+
+			<hr>
+
+			<h2 id="awards">Awards &amp; Recognition</h2>
+			<ul>
+			  {% for award in presskit.awards %}
+			    <li>"{{award.description}}" - <cite>{{award.info}}</cite></li>
+			  {% endfor %}
+			</ul>
+
+		  <hr>
+
+			<h2 id="quotes">Selected Articles</h2>
+			<ul>
+			  {% for quote in presskit.quotes %}
+				  <li>"{{quote.description}} - Everything else we consider nonsense"<br/>
+				    <cite>- {{quote.name}}, <a href="{{quote.link}}">{{quote.website}}</a></cite>
+				  </li>
+			  {% endfor %}
+			</ul>
+
+			<hr>
+
+			<h2 id="links">Additional Links</h2>
+		  {% for additional in presskit.additionals %}
+				<p>
+	        <strong>{{additional.title}}</strong><br/>
+	        {{additional.description}} available <a href="{{additional.link}}" alt="{{additional.link}}">here</a>.
+        </p>
+		  {% endfor %}
+
+      <hr>
+
+      <div class="uk-grid">
+			  <div class="uk-width-medium-1-2">
+				  <h2 id="credits">Team &amp; Repeating Collaborator</h2>
+				  {% for credit in presskit.credits %}
+					  <p>
+					    <strong>{{credit.person}}</strong><br/>
+					    <a href="http://{{credit.website}}">{{credit.role}}</a>
+					  </p>
+				  {% endfor %}
+			  </div>
+
+				<div class="uk-width-medium-1-2">
+					<h2 id="contact">Contacts</h2>
+				  {% for contact in presskit.contacts %}
+						<p>
+						  <strong>{{contact.name}}</strong><br/>
+						  <a href="{{contact.address}}">{{contact.address}}</a>
+						</p>
+				  {% endfor %}
+				</div>
+			</div>
+
+			<hr>
+
+			<p>
+			  <a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="sheet.php?p=credits">these fine folks</a>
+			</p>
 		</div>
-
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.js"></script>		
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.1.2/masonry.pkgd.min.js"></script>
-		<script type="text/javascript">
-			$( document ).ready(function() {
-				var container = $('.images');
-
-				container.imagesLoaded( function() {
-					container.masonry({
-						itemSelector: '.uk-width-medium-1-2',
-					});
-				});
-			});
-		</script>
-		
-		<!-- Google Analytics Here -->
-		
-		</body>
-</html>
+	</div>
+</div>
