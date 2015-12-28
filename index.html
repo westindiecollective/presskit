@@ -89,14 +89,14 @@ layout: default
       <hr>
 
       <h2 id="trailers">Videos</h2>
-      {% for trailer in presskit.trailers %}
-        <p>
-          <strong>{{trailer.name}}</strong>:&nbsp;<a href="https://youtu.be/{{trailer.youtube}}">https://youtu.be/{{trailer.youtube}}</a>
-          <div class="uk-responsive-width iframe-container">
-            <iframe src="http://www.youtube.com/embed/{{trailer.youtube}}" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </p>
-      {% endfor %}
+			{% for trailer in presskit.trailers %}
+				{% include trailer.html %}
+			{% else %}
+				<p>
+					There are currently no trailers available for {{presskit.title}}.
+					Check back later for more or <a href="#contact">contact us</a> for specific requests!
+				</p>
+			{% endfor %}
 
       <hr>
 

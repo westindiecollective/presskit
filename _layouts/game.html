@@ -89,24 +89,7 @@ layout: default
 
           <h2 id="trailers">Videos</h2>
           {% for trailer in game.trailers %}
-            <p>
-              <strong>{{trailer.name}}</strong>&nbsp;
-              {% if trailer.youtube %}<a href="https://youtu.be/{{trailer.youtube}}">https://youtu.be/{{trailer.youtube}}</a> {% endif %}
-              {% if trailer.vimeo %}<a href="http://www.vimeo.com/{{trailer.vimeo}}">http://www.vimeo.com/{{trailer.vimeo}}</a> {% endif %}
-              {% if trailer.mov %}<a href="{{base_url}}/trailers/{{trailer.mov}}">.mov</a> {% endif %}
-              {% if trailer.mp4 %}<a href="{{base_url}}/trailers/{{trailer.mp4}}">.mp4</a> {% endif %}
-
-              {% if trailer.youtube %}
-              <div class="uk-responsive-width iframe-container">
-                <iframe src="http://www.youtube.com/embed/{{trailer.youtube}}" frameborder="0" allowfullscreen></iframe>
-              </div>
-              {% else if trailer.vimeo %}
-              <div class="uk-responsive-width iframe-container">
-                <iframe src="http://player.vimeo.com/video/{{trailer.vimeo}}" frameborder="0" allowfullscreen></iframe>
-              </div>
-              {% endif %}
-
-            </p>
+            {% include trailer.html %}
           {% else %}
             <p>
               There are currently no trailers available for {{game.title}}.
