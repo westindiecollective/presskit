@@ -78,7 +78,7 @@ layout: default
           <h2 id="projects">Projects</h2>
 					<ul>
 					{% for game in site.games %}
-  					<li><a href="{{base_url}}{{game.url | remove_first:'/'}}">{{game.title}}</a></li>
+  					<li><a href="{{game.url | remove_first:'/' | remove: '.html' | prepend: base_url}}">{{game.title}}</a></li>
 					{% else %}
 						<li>No pain no game</li>
 					{% endfor %}
