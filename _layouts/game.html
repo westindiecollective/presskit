@@ -225,15 +225,7 @@ layout: default
               {% endfor %}
             </div>
             <div class="uk-width-medium-1-2">
-              <h2 id="contact">Contact</h2>
-
-              {% for contact in company.contacts %}
-                <p>
-                  <strong>{{contact.name}}</strong><br/>
-                  <a href="{{contact.address}}">{{contact.address}}</a>
-                </p>
-              {% endfor %}
-
+              {% include contacts.html %}
             </div>
           </div>
 
