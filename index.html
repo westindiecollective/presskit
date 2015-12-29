@@ -24,7 +24,12 @@ layout: default
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <div id="content" class="uk-width-medium-3-4"><img src="images/header.png" class="header">
+    <div id="content" class="uk-width-medium-3-4">
+      {% for file in site.static_files %}
+        {% if file.path == '/images/header.png' %}
+          <img src="images/header.png" class="header">
+        {% endif %}
+      {% endfor %}
       <div class="uk-grid">
         <div class="uk-width-medium-2-6">
           <h2 id="factsheet">Factsheet</h2>
@@ -110,17 +115,19 @@ layout: default
         <div class="uk-alert">download all screenshots &amp; photos as .zip</div>
       </a>
       <div class="uk-grid images">
-        <!-- Iterate over images
-        <div class="uk-width-medium-1-2">
-          <a href="images/janwillem-vlambeer-2.png">
-            <img src="images/janwillem-vlambeer-2.png" alt="janwillem-vlambeer-2.png" />
-          </a>
-        </div> -->
+      {% for file in site.static_files %}
+        {% assign image = file.path | split: '/' %}
+        debug : {{ image | join: ',' }}
+        {% if image contains 'images' and image.size <= 3 %}
+          <div class="uk-width-medium-1-2">
+            <a href="{{file.path}}">
+              <img src="{{file.path}}" alt="{{image | last}}" />
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
       </div>
       <p class="images-text">There are far more images available for {{presskit.title}}, but these are the ones we felt would be most useful to you. If you have specific requests, please do <a href="#contact">contact us</a>!</p>
-      {% for file in site.static_files %}
-        Path: {{ file.path }}
-      {% endfor %}
 
       <hr>
 
