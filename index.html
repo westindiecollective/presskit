@@ -52,8 +52,13 @@ layout: default
             <a href="http://callto:{{presskit.social.skype}}">Skype</a><br/>
           </p>
           <p>
-            <strong>Releases:</strong><br/>
-            <!-- <a href="release_url">release_name</a><br/> -->
+            <strong>Releases:</strong>
+            {% for game in site.games %}
+              <br/>
+              <a href="{{game.url | remove_first:'/' | remove: '.html' | prepend: base_url}}">{{game.title}}</a>
+            {% else %}
+              -
+            {% endfor %}
           </p>
             <p><strong>Address:</strong><br/>
             {% for address_line in presskit.address %}
