@@ -118,6 +118,9 @@ layout: default
         </div> -->
       </div>
       <p class="images-text">There are far more images available for {{presskit.title}}, but these are the ones we felt would be most useful to you. If you have specific requests, please do <a href="#contact">contact us</a>!</p>
+      {% for file in site.static_files %}
+        Path: {{ file.path }}
+      {% endfor %}
 
       <hr>
 
