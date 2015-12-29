@@ -103,8 +103,21 @@ layout: default
           <a href="{{base_url}}/images/images.zip"><div class="uk-alert">Download all screenshots &amp; photos as .zip.</div></a>
 
           <div class="uk-grid images">
-          <!-- Images here -->
-          <!-- <p class="images-text">There are currently no screenshots available for {{game.title}}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p> -->
+            {% for file in site.static_files %}
+              {% assign image = file.path | split: '/' %}
+              {% assign filename = image | last %}
+              {% if image[2] == 'images' and filename != 'header.png' and filename != 'logo.png' and filename != 'icon.png' %}
+                {% assign oneImageDisplay = true %}
+                <div class="uk-width-medium-1-2">
+                  <a href="{{base_url}}{{file.path}}">
+                    <img src="{{base_url}}{{file.path}}" alt="{{image | last}}" />
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+            {% unless oneImageDisplay %}
+              <p class="images-text">There are currently no screenshots available for {{game.title}}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p>
+            {% endunless %}
           </div>
 
           <hr>
