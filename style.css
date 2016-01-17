@@ -8,16 +8,13 @@ body {
 
 .root {
 	max-width: 767px;
+	margin: auto;
 }
 
-.container {
-	display: flex;
-	justify-content: center;
-}
+.container {}
 
 .box {
-	flex: 0 1 auto;
-	max-width: 50%;
+	max-width: 600px;
 }
 
 h2, h3 {
