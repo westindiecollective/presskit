@@ -14,61 +14,65 @@ layout: default
   {% endfor %}
   </header>
 
-  <div class='box'>
-    <h2 id='factsheet'>Factsheet</h2>
-    <dl>
-      <dt>Developer:</dd>
-      <dd><a href=''>{{presskit.title}}</a></dd>
-      <dd>Based in {{presskit.city}}</dd>
+  <div class='container'>
+    <div class='box'>
+      <h2 id='factsheet'>Factsheet</h2>
+      <dl>
+        <dt>Developer:</dd>
+        <dd><a href=''>{{presskit.title}}</a></dd>
+        <dd>Based in {{presskit.city}}</dd>
 
-      <dt>Founding date:</dt>
-      <dd>{{presskit.founded}}</dd>
+        <dt>Founding date:</dt>
+        <dd>{{presskit.founded}}</dd>
 
-      <dt>Website:</dt>
-      <dd><a href='http://{{presskit.website}}'>{{presskit.website}}</a></dd>
+        <dt>Website:</dt>
+        <dd><a href='http://{{presskit.website}}'>{{presskit.website}}</a></dd>
 
-      <dt>Press / Business contact:</dt>
-      <dd href='mailto:{{presskit.press}}'>{{presskit.press}}</dd>
+        <dt>Press / Business contact:</dt>
+        <dd href='mailto:{{presskit.press}}'>{{presskit.press}}</dd>
 
-      <dt>Social:</dt>
-      <dd><a href='http://twitter.com/{{presskit.social.twitter}}'>twitter.com/{{presskit.social.twitter}}</a></dd>
-      <dd><a href='http://facebook.com/{{presskit.social.facebook}}'>facebook.com/{{presskit.social.facebook}}</a></dd>
-      <dd><a href='http://callto:{{presskit.social.skype}}'>Skype</a></dd>
+        <dt>Social:</dt>
+        <dd><a href='http://twitter.com/{{presskit.social.twitter}}'>twitter.com/{{presskit.social.twitter}}</a></dd>
+        <dd><a href='http://facebook.com/{{presskit.social.facebook}}'>facebook.com/{{presskit.social.facebook}}</a></dd>
+        <dd><a href='http://callto:{{presskit.social.skype}}'>Skype</a></dd>
 
-      <dt>Releases:</dt>
-      {% for game in site.games %}
-        <dd><a href='{{game.url | remove_first:'/' | remove: '.html' | prepend: base_url}}'>{{game.title}}</a></dd>
-      {% else %}
-        <dd>-</dd>
-      {% endfor %}
+        <dt>Releases:</dt>
+        {% for game in site.games %}
+          <dd><a href='{{game.url | remove_first:'/' | remove: '.html' | prepend: base_url}}'>{{game.title}}</a></dd>
+        {% else %}
+          <dd>-</dd>
+        {% endfor %}
 
-      <dt>Address:</dt>
-      {% for address_line in presskit.address %}
-        <dd>{{address_line}}</dd>
-      {% endfor %}
-      </dt>
+        <dt>Address:</dt>
+        {% for address_line in presskit.address %}
+          <dd>{{address_line}}</dd>
+        {% endfor %}
+        </dt>
 
-      <dt>Phone:</dt>
-      <dd>{{presskit.phone}}</dd>
-    </dl>
-  </div>
+        <dt>Phone:</dt>
+        <dd>{{presskit.phone}}</dd>
+      </dl>
+    </div>
 
-  <div class='box'>
-    <h2 id='description'>Description</h2>
-    <p>{{presskit.description}}</p>
-  </div>
+    <div class='box'>
+      <div class='box'>
+        <h2 id='description'>About Us</h2>
+        <p>{{presskit.description}}</p>
+      </div>
 
-  <div class='box'>
-    <h2 id='history'>History</h2>
-    {% for story in presskit.history %}
-      <h3>{{story.header}}</h3>
-      <p>{{story.text}}</p>
-    {% endfor %}
+      <div class='box'>
+        <h2 id='history'>History</h2>
+        {% for story in presskit.history %}
+          <h3>{{story.header}}</h3>
+          <p>{{story.text}}</p>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
   <div class='box'>
     <h2 id='projects'>Projects</h2>
-    <ul>
+    <ul class='project-list'>
     {% for game in site.games %}
       <li><a href='{{game.url | remove_first:'/' | remove: '.html' | prepend: base_url}}'>{{game.title}}</a></li>
     {% else %}
@@ -79,6 +83,7 @@ layout: default
 
   <div class='box'>
     <h2 id='trailers'>Videos</h2>
+
 		{% for trailer in presskit.trailers %}
 			{% include trailer.html %}
 		{% else %}
@@ -88,7 +93,7 @@ layout: default
 
   <div class='box'>
     <h2 id='images'>Images</h2>
-    <a href='images/images.zip' class='notice'>download all screenshots &amp; photos as .zip</a>
+    <a href='images/images.zip' class='notice'>download all screenshots &amp; photos</a>
 
     <div class='masonry'>
     {% for file in site.static_files %}
@@ -109,7 +114,7 @@ layout: default
 
   <div class='box'>
     <h2 id='logo'>Logo &amp; Icon</h2>
-    <a href='images/logo.zip' class='notice'>download logo files as .zip (15KB)</a>
+    <a href='images/logo.zip' class='notice'>download all logo files</a>
 
     <div>
       <a href='images/logo.png'>
@@ -145,8 +150,8 @@ layout: default
 
     <dl>
     {% for additional in presskit.additionals %}
-      <dt>{{additional.title}}</dt>
-      <dd>{{additional.description}} available <a href='{{additional.link}}' alt='{{additional.link}}'>here</a>.</dd>
+      <dt><a href='{{additional.link}}' alt='{{additional.link}}'>{{additional.title}}</a></dt>
+      <dd>{{additional.description}}</dd>
     {% endfor %}
     </dl>
   </div>
