@@ -1,8 +1,8 @@
-<h2 id="contact">Contact</h2>
+<h2 id='contact'>Contact</h2>
 
+<dl>
 {% for contact in site.data.presskit.contacts %}
-  <p>
-    <strong>{{contact.name}}</strong><br/>
-    <a href="{{contact.address}}">{{contact.address}}</a>
-  </p>
+  <dt>{{contact.name}}</dt>
+  <dd><a href='{{contact.address}}'>{{contact.address}}</a></dd>
 {% endfor %}
+</dl>
