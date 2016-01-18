@@ -5,233 +5,208 @@ layout: default
 {% assign company = site.data.presskit %}
 {% assign game = page %}
 
-<div class="uk-container uk-container-center">
-  <div class="uk-grid">
-    <div id="navigation" class="uk-width-medium-1-4">
-      <h1 class="nav-header">{{company.title}}</h1>
-      <a class="nav-header" href="{{base_url}}" target="_self">press kit</a></strong>
-      <ul class="uk-nav uk-nav-side">
-        <li><a href="#factsheet">Factsheet</a></li>
-        <li><a href="#description">Description</a></li>
-        <li><a href="#history">History</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#trailers">Videos</a></li>
-        <li><a href="#images">Images</a></li>
-        <li><a href="#logo">Logo &amp; Icon</a></li>
-        {% if game.awards != empty %} <li><a href="#awards">Awards &amp; Recognition</a></li> {% endif %}
-        {% if game.quotes != empty %} <li><a href="#quotes">Selected Articles</a></li> {% endif %}
-        {% if game['press-can-request-copy'] %} <li><a href="#preview">Request Press Copy</a></li> {% endif %}
-        {% if !game['monetization-permission'] %} <li><a href="#monetize">Monetization Permission</a></li> {% endif %}
-        <li><a href="#links">Additional Links</a></li>
-        <li><a href="#about">About {{company.title}}</a></li>
-        <li><a href="#credits">Team</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<div class='root container'>
+
+  <header>
+  {% for file in site.static_files %}
+    {% if file.path == '/images/header.png' %}
+    <img src='{{site.url}}/images/header.png' class='header'>
+    {% endif %}
+  {% endfor %}
+  </header>
+
+  <div class='container'>
+    <div class='box'>
+      <h2 id='factsheet'>Factsheet</h2>
+      <dl>
+        <dt>Developer:</dt>
+        <dd><a href=''>{{presskit.title}}</a></dd>
+        <dd>Based in {{presskit.city}}</dd>
+
+        <dt>Release date:</dt>
+        <dd>{{game.release}}</dd>
+
+        <dt>Platforms:</dt>
+        {% for platform in game.platforms %}
+        <dd><a href='http://{{platform.link}}'>{{platform.name}}</a></dd>
+        {% endfor %}
+
+        <dt>Website:</dt>
+        <dd><a href='http://{{game.website}}'>{{game.website}}</a></dd>
+
+        <dt>Regular Price:</dt>
+        {% if game.prices != empty %}
+        {% for price in game.prices %}
+        <dd>{{price.currency}} {{price.value}}</dd>
+        {% endfor %}
+        {% else %}
+          -
+        {% endif %}
+      </dl>
     </div>
 
-    <div id="content" class="uk-width-medium-3-4">
-      <img src="{{ site.url }}/images/header.png" class="header">
-      <div class="uk-grid">
-            <div class="uk-width-medium-2-6">
-              <h2 id="factsheet">Factsheet</h2>
-              <p>
-                <strong>Developer:</strong><br/>
-                <a href="{{base_url}}">{{company.title}}</a><br/>
-                Based in {{company.city}}
-              </p>
-              <p>
-                <strong>Release date:</strong><br/>
-                {{game.release}}
-              </p>
-              <p>
-                <strong>Platforms:</strong><br/>
-                {% for platform in game.platforms %}
-                  <a href="http://{{platform.link}}">{{platform.name}}</a><br/>
-                {% endfor %}
-              </p>
-              <p>
-                <strong>Website:</strong><br/>
-                <a href="http://{{game.website}}">{{game.website}}</a>
-              </p>
-              <p>
-                <strong>Regular Price:</strong><br/>
-                {% if game.prices != empty %}
-                  <table>
-                  {% for price in game.prices %}
-                    <tr>
-                      <td>{{price.currency}}</td>
-                      <td>{{price.value}}</td>
-                    </tr>
-                  {% endfor %}
-                  </table>
-                {% else %}
-                  -
-                {% endif %}
-              </p>
-            </div>
-            <div class="uk-width-medium-4-6">
-              <h2 id="description">Description</h2>
-              <p>{{game.description}}</p>
-              {% if game.history %}
-                <h2 id="history">History</h2>
-                <p>{{game.history}}</p>
-              {% endif %}
-              <h2>Features</h2>
-              <ul>
-              {% for feature in game.features %}
-                <li>{{feature}}</li>
-              {% endfor %}
-              </ul>
-            </div>
-          </div>
+    <div class='box'>
+      <div class='box'>
+        <h2 id='description'>About The Game</h2>
+        <p>{{game.description}}</p>
+      </div>
 
-          <hr>
+      {% if game.history %}
+      <div class='box'>
+        <h2 id='history'>History</h2>
+        <p>{{game.history}}</p>
+      </div>
+      {% endif %}
 
-          <h2 id="trailers">Videos</h2>
-          {% for trailer in game.trailers %}
-            {% include trailer.html %}
-          {% else %}
-            <p>
-              There are currently no trailers available for {{game.title}}.
-              Check back later for more or <a href="#contact">contact us</a> for specific requests!
-            </p>
-          {% endfor %}
-
-          <hr>
-
-          <h2 id="images">Images</h2>
-          <a href="{{base_url}}/images/images.zip"><div class="uk-alert">Download all screenshots &amp; photos as .zip.</div></a>
-
-          <div class="uk-grid images">
-            {% for file in site.static_files %}
-              {% assign image = file.path | split: '/' %}
-              {% assign filename = image | last %}
-              {% if image[2] == 'images' and filename != 'header.png' and filename != 'logo.png' and filename != 'icon.png' %}
-                {% assign oneImageDisplay = true %}
-                <div class="uk-width-medium-1-2">
-                  <a href="{{base_url}}{{file.path}}">
-                    <img src="{{base_url}}{{file.path}}" alt="{{image | last}}" />
-                  </a>
-                </div>
-              {% endif %}
-            {% endfor %}
-            {% unless oneImageDisplay %}
-              <p class="images-text">There are currently no screenshots available for {{game.title}}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p>
-            {% endunless %}
-          </div>
-
-          <hr>
-
-          <h2 id="logo">Logo &amp; Icon</h2>
-          <a href="{{base_url}}/images/logo.zip"><div class="uk-alert">Download logo files as .zip.</div></a>
-          <div class="uk-grid images">
-            <div class="uk-width-medium-1-2"><a href="{{base_url}}/images/logo.png"><img src="{{base_url}}/images/logo.png" alt="logo" /></a></div>
-            <div class="uk-width-medium-1-2"><a href="{{base_url}}/images/icon.png"><img src="{{base_url}}/images/icon.png" alt="icon" /></a></div>
-          </div>
-          <!-- <p>There are currently no logos or icons available for {{game.title}}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p> -->
-
-          <hr>
-
-          {% if game.awards != empty %}
-            <h2 id="awards">Awards &amp; Recognition</h2>
-            <ul>
-              <!-- promoter awards here -->
-
-              {% for award in game.awards %}
-                <li>"{{award.description}}" <cite>{{award.info}}</cite></li>
-              {% endfor %}
-
-            </ul>
-
-            <hr>
-          {% endif %}
-
-          {% if game.quotes != empty %}
-            <h2>Selected Articles</h2>
-            <ul>
-              <!-- promoter quotes here -->
-
-              {% for quote in game.quotes %}
-                <li>
-                  "{{quote.description}}" <br/>
-                  <cite>- {{quote.name}}, <a href="http://{{quote.link}}">{{quote.website}}</a></cite>
-                </li>
-              {% endfor %}
-
-            </ul>
-
-            <hr>
-          {% endif %}
-
-          <!-- press-can-request-copy with distribute() here -->
-
-          {% if game['monetization-permission'] %}
-
-            <h2 id="monetize">Monetization Permission</h2>
-            {% case game['monetization-permission'] %}
-            {% when 'false' %}
-            <p>{{company.title}} does currently not allow for the contents of {{game.title}} to be published through video broadcasting services.</p>
-            {% when 'ask' %}
-            <p>{{company.title}} does allow the contents of this game to be published through video broadcasting services only with direct written permission from {{game.title}}. Check at the bottom of this page for contact information.</p>
-            {% when 'non-commercial' %}
-            <p>{{company.title}} allows for the contents of {{game.title}} to be published through video broadcasting services for non-commercial purposes only. Monetization of any video created containing assets from {{game.title}} is not allowed.</p>
-            {% when 'monetize' %}
-            <p>
-              {{company.title}} allows for the contents of {{game.title}} to be published through video broadcasting services for any commercial or non-commercial purposes. Monetization of videos created containing assets from {{game.title}} is legally &amp; explicitly allowed by {{company.title}}.
-              <!-- This permission can be found in writing at <a href="#">...</a> -->
-            </p>
-            {% endcase %}
-
-            <hr>
-          {% endif %}
-
-          <h2 id="links">Additional Links</h2>
-
-          {% for additional in game.additionals %}
-          <p>
-            <strong>{{additional.title}}</strong><br/>
-            {{additional.description}} <a href="http://{{additional.link}}" alt="{{additional.link}}">{{additional.link}}</a>.
-          </p>
-          {% endfor %}
-
-          <hr>
-
-          <h2 id="about">About {{company.title}}</h2>
-          <p>
-            <strong>Boilerplate</strong><br/>
-            {{company.description}}
-          </p>
-
-          <p>
-            <strong>More information</strong><br/>
-            More information on {{company.title}}, our logo &amp; relevant media are available <a href="{{base_url}}">here</a>
-          </p>
-
-          <hr>
-
-          <div class="uk-grid">
-            <div class="uk-width-medium-1-2">
-              <h2 id="credits">{{game.title}} Credits</h2>
-
-              {% for credit in game.credits %}
-                <p>
-                  <strong>{{credit.person}}</strong><br/>
-                  {% if credit.website %}
-                    <a href="http://{{credit.website}}">{{credit.role}}</a>
-                  {% else %}
-                    {{credit.role}}
-                  {% endif %}
-                </p>
-              {% endfor %}
-            </div>
-            <div class="uk-width-medium-1-2">
-              {% include contacts.html %}
-            </div>
-          </div>
-
-          <hr>
-
-          <p><a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="#">these fine folks</a></p>
-        </div>
+      <div class='box'>
+        <h2>Features</h2>
+        <ul class='feature-list'>
+        {% for feature in game.features %}
+          <li>{{feature}}</li>
+        {% endfor %}
+        </ul>
       </div>
     </div>
+  </div>
+
+  <div class='box'>
+    <h2 id='trailers'>Videos</h2>
+    {% for trailer in game.trailers %}
+      {% include trailer.html %}
+    {% else %}
+    <p>There are currently no trailers available for {{game.title}}. Check back later for more or <a href='#contact'>contact us</a> for specific requests!</p>
+    {% endfor %}
+  </div>
+
+  <div class='box'>
+    <h2 id='images'>Images</h2>
+    <a href='{{base_url}}/images/images.zip' class='notice'>download all screenshots &amp; photos</a>
+
+    <div class='masonry'>
+    {% for file in site.static_files %}
+      {% assign image = file.path | split: '/' %}
+      {% assign filename = image | last %}
+      {% if image[2] == 'images' and filename != 'header.png' and filename != 'logo.png' and filename != 'icon.png' %}
+      {% assign oneImageDisplay = true %}
+      <div class='masonry-item'>
+        <a href='{{base_url}}{{file.path}}'>
+          <img src='{{base_url}}{{file.path}}' alt='{{image | last}}' />
+        </a>
+      </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+
+    {% unless oneImageDisplay %}
+    <p class='images-text'>There are currently no screenshots available for {{game.title}}. Check back later for more or <a href='#contact'>contact us</a> for specific requests!</p>
+    {% endunless %}
+  </div>
+
+  <div class='box'>
+    <h2 id='logo'>Logo &amp; Icon</h2>
+    <a href='{{base_url}}/images/logo.zip' class='notice'>download all logo files</a>
+
+    <div class='container'>
+      <div class='box'>
+        <a href='{{base_url}}/images/logo.png'><img src='{{base_url}}/images/logo.png' alt='logo' /></a>
+      </div>
+      <div class='box'>
+        <a href='{{base_url}}/images/icon.png'><img src='{{base_url}}/images/icon.png' alt='icon' /></a>
+      </div>
+    </div>
+    <!-- <p>There are currently no logos or icons available for {{game.title}}. Check back later for more or <a href='#contact'>contact us</a> for specific requests!</p> -->
+  </div>
+
+  {% if game.awards != empty %}
+  <div class='box'>
+    <h2 id='awards'>Awards &amp; Recognition</h2>
+    <ul>
+      <!-- promoter awards here -->
+
+      {% for award in game.awards %}
+      <li>'{{award.description}}' <cite>{{award.info}}</cite></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if game.quotes != empty %}
+  <div class='box'>
+    <h2>Selected Articles</h2>
+    <!-- promoter quotes here -->
+
+    {% for quote in game.quotes %}
+    <blockquote>
+      <p>{{quote.description}}</p>
+      <footer>
+        — <cite>{{quote.name}}, <a href='{{quote.link}}'>{{quote.website}}</a></cite>
+      </footer>
+    </blockquote>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+      <!-- press-can-request-copy with distribute() here -->
+
+  {% if game['monetization-permission'] %}
+  <div class='box'>
+    <h2 id='monetize'>Monetization Permission</h2>
+
+    {% case game['monetization-permission'] %}
+    {% when 'false' %}
+    <p>{{company.title}} does currently not allow for the contents of {{game.title}} to be published through video broadcasting services.</p>
+    {% when 'ask' %}
+    <p>{{company.title}} does allow the contents of this game to be published through video broadcasting services only with direct written permission from {{game.title}}. Check at the bottom of this page for contact information.</p>
+    {% when 'non-commercial' %}
+    <p>{{company.title}} allows for the contents of {{game.title}} to be published through video broadcasting services for non-commercial purposes only. Monetization of any video created containing assets from {{game.title}} is not allowed.</p>
+    {% when 'monetize' %}
+    <p>{{company.title}} allows for the contents of {{game.title}} to be published through video broadcasting services for any commercial or non-commercial purposes. Monetization of videos created containing assets from {{game.title}} is legally &amp; explicitly allowed by {{company.title}}.</p>
+      <!-- This permission can be found in writing at <a href='#'>...</a> -->
+    {% endcase %}
+  </div>
+  {% endif %}
+
+  <div class='box'>
+    <h2 id='links'>Additional Links</h2>
+
+    {% for additional in game.additionals %}
+    <dt><a href='{{additional.link}}' alt='{{additional.link}}'>{{additional.title}}</a></dt>
+    <dd>{{additional.description}}</dd>
+    {% endfor %}
+  </div>
+
+  <div class='box'>
+    <h2 id='about'>About {{company.title}}</h2>
+
+    <h3>Boilerplate</h3>
+    <p>{{company.description}}</p>
+
+    <h3>More information</h3>
+    <p>More information on {{company.title}}, our logo &amp; relevant media are available <a href='{{base_url}}'>here</a></p>
+  </div>
+
+  <div class='container'>
+    <div class='box'>
+      <h2 id='credits'>{{game.title}} Credits</h2>
+
+      <dl>
+      {% for credit in game.credits %}
+        <dt>{{credit.person}}</dt>
+        {% if credit.website %}
+        <dd><a href='http://{{credit.website}}'>{{credit.role}}</a></dd>
+        {% else %}
+        <dd>{{credit.role}}</dd>
+        {% endif %}
+      {% endfor %}
+      </dl>
+    </div>
+
+    <div class='box'>
+      {% include contacts.html %}
+    </div>
+  </div>
+
+  <div class='box'>
+    <p><a href='http://dopresskit.com/'>presskit()</a> by Rami Ismail (<a href='http://www.vlambeer.com/'>Vlambeer</a>) - also thanks to <a href='#'>these fine folks</a></p>
+  </div>
+</div>

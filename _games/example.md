@@ -74,10 +74,10 @@ quotes:
 
 additionals:
   - title: "Original Soundtrack"
-    description: "Available for free from"
+    description: "Available for free!"
     link: "http://somemusicsite.com/thislink"
   - title: "Release Blog Post"
-    description: "The blog-post through which this game was released is available at"
+    description: "The blog-post through which this game was released."
     link: "http://vlambeer.com/bloglink"
 
 credits:

@@ -105,3 +105,12 @@ blockquote footer {
   width: 100%;
   height: 100%;
 }
+
+.feature-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.feature-list li {
+  margin: 8px 0;
+}
