@@ -2,6 +2,13 @@
 layout: default
 ---
 
+{% assign base_url = '' %}
+{% assign depth = page.url | split: '/' | size | minus: 1 %}
+{% if    depth == 1 %}{% assign base_url = '.' %}
+{% elsif depth == 2 %}{% assign base_url = '..' %}
+{% elsif depth == 3 %}{% assign base_url = '../..' %}
+{% elsif depth == 4 %}{% assign base_url = '../../..' %}{% endif %}
+
 {% assign company = site.data.presskit %}
 {% assign game = page %}
 
@@ -10,7 +17,7 @@ layout: default
   <header>
   {% for file in site.static_files %}
     {% if file.path == '/images/header.png' %}
-    <img src='{{site.url}}/images/header.png' class='header'>
+    <img src='{{base_url}}/images/header.png' class='header'>
     {% endif %}
   {% endfor %}
   </header>
@@ -20,7 +27,7 @@ layout: default
       <h2 id='factsheet'>Factsheet</h2>
       <dl>
         <dt>Developer:</dt>
-        <dd><a href=''>{{company.title}}</a></dd>
+        <dd><a href='{{base_url}}'>{{company.title}}</a></dd>
         <dd>Based in {{company.city}}</dd>
 
         <dt>Release date:</dt>
@@ -35,10 +42,8 @@ layout: default
         <dd><a href='http://{{game.website}}'>{{game.website}}</a></dd>
 
         <dt>Regular Price:</dt>
-        {% if game.prices != empty %}
         {% for price in game.prices %}
         <dd>{{price.currency}} {{price.value}}</dd>
-        {% endfor %}
         {% else %}
           -
         {% endif %}
@@ -139,7 +144,7 @@ layout: default
     <blockquote>
       <p>{{quote.description}}</p>
       <footer>
-        — <cite>{{quote.name}}, <a href='{{quote.link}}'>{{quote.website}}</a></cite>
+        — <cite>{{quote.name}}, <a href='http://{{quote.link}}'>{{quote.website}}</a></cite>
       </footer>
     </blockquote>
     {% endfor %}
@@ -170,7 +175,7 @@ layout: default
     <h2 id='links'>Additional Links</h2>
 
     {% for additional in game.additionals %}
-    <dt><a href='{{additional.link}}' alt='{{additional.link}}'>{{additional.title}}</a></dt>
+    <dt><a href='http://{{additional.link}}' alt='{{additional.link}}'>{{additional.title}}</a></dt>
     <dd>{{additional.description}}</dd>
     {% endfor %}
   </div>
@@ -207,6 +212,6 @@ layout: default
   </div>
 
   <div class='box'>
-    <p><a href='http://dopresskit.com/'>presskit()</a> by Rami Ismail (<a href='http://www.vlambeer.com/'>Vlambeer</a>) - also thanks to <a href='#'>these fine folks</a></p>
+    <p>Based on <a href='http://dopresskit.com/'>presskit()</a> by Rami Ismail (<a href='http://www.vlambeer.com/'>Vlambeer</a>) - also thanks to <a href='#'>these fine folks</a></p>
   </div>
 </div>
